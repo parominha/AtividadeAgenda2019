@@ -8,6 +8,7 @@ namespace AtividadeAgenda2019
 {
     public class ConsultaViaCep
     {
+
         public ViaCep Consulta(string CEP)
         {
             string oURL = "https://viacep.com.br/ws/" + CEP + "/json/";
@@ -20,5 +21,7 @@ namespace AtividadeAgenda2019
             oviaCEP = JsonConvert.DeserializeObject<ViaCep>(JsonRetorno);
             return oviaCEP;
         }
+
+
     }
 }
