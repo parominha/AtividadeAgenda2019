@@ -12,12 +12,13 @@ namespace AtividadeAgenda2019
         {
             List<Agenda> ListaAgenda = new List<Agenda>();
             Boolean Consulta = true;
+            ViaCep oViaCep = new ViaCep();
 
             while (Consulta)
             {
                 string Nome, Sobrenome, DataNascimento, Sexo;
 
-                Console.WriteLine("Digite LISTAR / SALVAR / CONSULTA / SAIR");
+                Console.WriteLine("Digite LISTAR / SALVAR / CADASTRO / SAIR");
                 string OpcaoEscolhida = Console.ReadLine();
 
                 switch (OpcaoEscolhida.ToUpper())
@@ -26,14 +27,14 @@ namespace AtividadeAgenda2019
                         string filePath = @"C:\temp\Lista.json";
                         var ObjetoDados = JsonConvert.SerializeObject(ListaAgenda);
                         await File.WriteAllTextAsync(filePath, ObjetoDados);
-                        Console.WriteLine("Dados salvos com sucesso !!!");
+                        Console.WriteLine("**Dados salvos com sucesso!**");
                         break;
 
                     case "SAIR":
                         Consulta = false;
                         break;
 
-                    case "CONSULTA":
+                    case "CADASTRO":
                         Agenda oAgenda = new Agenda();
                         Console.Write("Digite o seu nome: ");
                         Nome = Console.ReadLine();
@@ -68,11 +69,11 @@ namespace AtividadeAgenda2019
                             goto ValidacaoSexo;
                         }
 
-                        //Console.Write("Digite o seu CEP: ");
-                        //string CEP = Console.ReadLine();
-                        //ConsultaViaCep RetornoConsultaViaCep = new ConsultaViaCep();
-                        //ViaCep oViaCep = new ViaCep();
-                        //oViaCep = RetornoConsultaViaCep.Consulta(CEP);
+                        Console.Write("Digite o seu CEP: ");
+                        string CEP = Console.ReadLine();
+                        ConsultaViaCep RetornoConsultaViaCep = new ConsultaViaCep();
+ 
+                        oViaCep = RetornoConsultaViaCep.Consulta(CEP);
 
                         oAgenda.Nome = Nome;
                         oAgenda.Sobrenome = Sobrenome;
@@ -90,14 +91,14 @@ namespace AtividadeAgenda2019
                             Console.WriteLine("Sobrenome:.........." + ListaAgenda[i].Sobrenome.ToString());
                             Console.WriteLine("Data de nascimento:." + ListaAgenda[i].DataNascimento.ToString());
                             Console.WriteLine("Sexo:..............." + ListaAgenda[i].Sexo.ToString());
-                            //Console.WriteLine("CEP:................" + oViaCep.Cep.ToString());
-                            //Console.WriteLine("Logradouro:........." + oViaCep.Logradouro.ToString());
-                            //Console.WriteLine("Complemento:........" + oViaCep.Complemento.ToString());
-                            //Console.WriteLine("Bairro:............." + oViaCep.Bairro.ToString());
-                            //Console.WriteLine("Localidade:........." + oViaCep.Localidade.ToString());
-                            //Console.WriteLine("UF:................." + oViaCep.UF.ToString());
-                            //Console.WriteLine("Ibge:..............." + oViaCep.Ibge.ToString());
-                            //Console.WriteLine("DDD:................" + oViaCep.Ddd.ToString());
+                            Console.WriteLine("CEP:................" + oViaCep.Cep.ToString());
+                            Console.WriteLine("Logradouro:........." + oViaCep.Logradouro.ToString());
+                            Console.WriteLine("Complemento:........" + oViaCep.Complemento.ToString());
+                            Console.WriteLine("Bairro:............." + oViaCep.Bairro.ToString());
+                            Console.WriteLine("Localidade:........." + oViaCep.Localidade.ToString());
+                            Console.WriteLine("UF:................." + oViaCep.UF.ToString());
+                            Console.WriteLine("Ibge:..............." + oViaCep.Ibge.ToString());
+                            Console.WriteLine("DDD:................" + oViaCep.Ddd.ToString());
                         }
                         break;
 
